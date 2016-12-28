@@ -3,19 +3,22 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Etreprise
+ * Entreprise
  *
- * @ORM\Table(name="entreprise")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\EtrepriseRepository")
+ * @ORM\Table(name="subscriber")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\EntrepriseRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Entreprise
 {
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="bigint")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -27,6 +30,13 @@ class Entreprise
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone_number", type="string", length=255)
+     */
+    private $phoneNumber;
 
     /**
      * @var string
@@ -34,6 +44,13 @@ class Entreprise
      * @ORM\Column(name="logo", type="string", length=255)
      */
     private $logo;
+    
+    /**
+     * @Assert\File(maxSize="6000000") 
+    */
+    private $file;
+    
+    private $temp;
 
     /**
      * @var string
@@ -55,7 +72,37 @@ class Entreprise
      * @ORM\Column(name="state", type="integer")
      */
     private $state;
+    
+    /**
+     * @var \Domain
+     *
+     * @ORM\ManyToOne(targetEntity="Domain")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="domain", referencedColumnName="id")
+     * })
+     */
+    private $domain;
+    
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\HistoricalAlertEntreprise", mappedBy="subscriber", cascade={"remove", "persist"})
+     */
+    private $historicalAlertEntreprises;
+    
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Subscriber", mappedBy="subscriber", cascade={"remove", "persist"})
+     */
+    private $subscribers;
 
+    /** 
+     * Constructor
+     */
+    public function __construct() {
+        $this->status = 1;
+    }
 
     /**
      * Get id
@@ -72,7 +119,7 @@ class Entreprise
      *
      * @param string $name
      *
-     * @return Etreprise
+     * @return Entreprise
      */
     public function setName($name)
     {
@@ -90,13 +137,37 @@ class Entreprise
     {
         return $this->name;
     }
+    
+    /**
+     * Set phoneNumber
+     *
+     * @param string $phoneNumber
+     *
+     * @return Entreprise
+     */
+    public function setPhoneNumber($phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get phoneNumber
+     *
+     * @return string
+     */
+    public function getPhoneNumber()
+    {
+        return $this->phoneNumber;
+    }
 
     /**
      * Set logo
      *
      * @param string $logo
      *
-     * @return Etreprise
+     * @return Entreprise
      */
     public function setLogo($logo)
     {
@@ -120,7 +191,7 @@ class Entreprise
      *
      * @param string $email
      *
-     * @return Etreprise
+     * @return Entreprise
      */
     public function setEmail($email)
     {
@@ -144,7 +215,7 @@ class Entreprise
      *
      * @param integer $status
      *
-     * @return Etreprise
+     * @return Entreprise
      */
     public function setStatus($status)
     {
@@ -172,8 +243,191 @@ class Entreprise
     }
 
 
+    /**
+     * @param UploadedFile $file
+     * @return object
+     */
+    public function setFile(UploadedFile $file = null) {
+        $this->file = $file;
+        // check if we have an old image logo
+        if (isset($this->logo)) {
+            // store the old name to delete after the update
+            $this->temp = $this->logo;
+            $this->logo = null;
+        } else {
+            $this->logo = 'initial';
+        }
+    }
+    /**
+     * Get the file used for profile picture uploads
+     * 
+     * @return UploadedFile
+     */
+    public function getFile() {
+        return $this->file;
+    }
+    protected function getUploadRootDir() {
+        return __DIR__ . '/../../../../web/uploads/Materiels';
+    }
+    /**
+     * @ORM\PrePersist() 
+     * @ORM\PreUpdate() 
+     */
+    public function preUpload() {
+        if (null !== $this->getFile()) {
+            // do whatever you want to generate a unique name
+            $filename = sha1(uniqid(mt_rand(), true));
+            $this->logo = $filename . '.' . $this->getFile()->guessExtension();
+        }
+    }
+    /**
+     * Generates a 32 char long random filename
+     * 
+     * @return string
+     */
+    public function generateRandomProfilePictureFilename() {
+        $count = 0;
+        do {
+            $generator = new SecureRandom();
+            $random = $generator->nextBytes(16);
+            $randomString = bin2hex($random);
+            $count++;
+        } while (file_exists($this->getUploadRootDir() . '/' . $randomString . '.' . $this->getFile()->guessExtension()) && $count < 50);
+        return $randomString;
+    }
+    /**
+     * @ORM\PostPersist() 
+     * @ORM\PostUpdate() 
+     */
+    public function upload() {
+        if (null === $this->getFile()) {
+            return;
+        }
+        // if there is an error when moving the file, an exception will
+        // be automatically thrown by move(). This will properly prevent
+        // the entity from being persisted to the database on error
+        $this->getFile()->move($this->getUploadRootDir(), $this->logo);
+        // check if we have an old image
+        if (isset($this->temp)) {
+            // delete the old image
+            //unlink($this->getUploadRootDir().'/'.$this->temp);
+            //ou je renomme
+            rename($this->getUploadRootDir() . '/' . $this->temp, $this->getUploadRootDir() . '/old' . $this->temp);
+            // clear the temp image logo
+            $this->temp = null;
+        }
+        $this->file = null;
+    }
 
+    /**
+     * Set domain
+     *
+     * @param AppBundle\Entity\Domain $domain
+     *
+     * @return Entreprise
+     */
+    public function setDomain($domain)
+    {
+        $this->domain = $domain;
 
+        return $this;
+    }
+
+    /**
+     * Get domain
+     *
+     * @return AppBundle\Entity\Domain
+     */
+    public function getDomain()
+    {
+        return $this->domain;
+    }
     
+    /**
+     * Add historicalAlertEntreprise
+     *
+     * @param AppBundle\Entity\HistoricalAlertEntreprise $historicalAlertEntreprise
+     * @return Entrprise
+     */
+    public function addHistoricalAlertEntreprise(AppBundle\Entity\HistoricalAlertEntreprise $historicalAlertEntreprise) {
+        $this->historicalAlertEntreprises[] = $historicalAlertEntreprise;
+        return $this;
+    }
+
+    /**
+     * Get historicalAlertEntreprises
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getHistoricalAlertEntreprises() {
+        return $this->historicalAlertEntreprises;
+    }
+
+    /**
+     * Set historicalAlertEntreprises
+     *
+     * @param \Doctrine\Common\Collections\Collection $historicalAlertEntreprises
+     * @return Entreprise
+     */
+    public function setHistoricalAlertEntreprises(\Doctrine\Common\Collections\Collection $historicalAlertEntreprises = null) {
+        $this->historicalAlertEntreprises = $historicalAlertEntreprises;
+
+        return $this;
+    }
+
+    /**
+     * Remove historicalAlertEntreprises
+     *
+     * @param AppBundle\Entity\HistoricalAlertEntreprise $historicalAlertEntreprise
+     * @return Entreprise
+     */
+    public function removeHistoricalAlertEntreprise(AppBundle\Entity\HistoricalAlertEntreprise $historicalAlertEntreprise) {
+        $this->historicalAlertEntreprises->removeElement($historicalAlertEntreprise);
+        return $this;
+    }
+    
+    
+    /**
+     * Add subscriber
+     *
+     * @param AppBundle\Entity\Subscriber $subscriber 
+     * @return Entreprise
+     */
+    public function addSubscriber(AppBundle\Entity\Subscriber $subscriber) {
+        $this->subscribers[] = $subscriber;
+        return $this;
+    }
+
+    /**
+     * Get subscribers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSubscribers() {
+        return $this->subscribers;
+    }
+
+    /**
+     * Set subscribers
+     *
+     * @param \Doctrine\Common\Collections\Collection $subscribers
+     * @return Entreprise
+     */
+    public function setSubscribers(\Doctrine\Common\Collections\Collection $subscribers = null) {
+        $this->subscribers = $subscribers;
+
+        return $this;
+    }
+
+    /**
+     * Remove subscriber
+     *
+     * @param AppBundle\Entity\Subscriber $subscriber
+     * @return Entreprise
+     */
+    public function removeSubscriber(AppBundle\Entity\Subscriber $subscriber) {
+        $this->subscribers->removeElement($subscriber);
+        return $this;
+    }
 }
 

@@ -8,28 +8,15 @@ use Doctrine\ORM\Mapping as ORM;
  * Expression_interest
  *
  * @ORM\Table(name="expression_interest")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\Expression_interestRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ExpressionOfnterestRepository")
  */
-class Expression_interest
+class ExpressionOfInterest extends AlertProcedure
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * Constructor
      */
-    private $id;
-
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
+    public function __construct() {
+        parent::__construct();
     }
 }
 

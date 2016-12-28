@@ -13,9 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
 class Domain
 {
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="bigint")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -34,7 +34,27 @@ class Domain
      * @ORM\Column(name="status", type="string", length=255)
      */
     private $status;
+    
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Entreprise", mappedBy="domain", cascade={"remove", "persist"})
+     */
+    private $entreprises;
+    
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\AlertProcedure", mappedBy="domain", cascade={"remove", "persist"})
+     */
+    private $alertProcedures;
 
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->status = 1;
+    }
 
     /**
      * Get id
@@ -92,6 +112,93 @@ class Domain
     public function getStatus()
     {
         return $this->status;
+    }
+    
+    
+    /**
+     * Add entreprise
+     *
+     * @param AppBundle\Entity\Entreprise $entreprise 
+     * @return Domain
+     */
+    public function addEntreprise(AppBundle\Entity\Entreprise $entreprise) {
+        $this->entreprises[] = $entreprise;
+        return $this;
+    }
+
+    /**
+     * Get entreprises
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEntreprises() {
+        return $this->entreprises;
+    }
+
+    /**
+     * Set entreprises
+     *
+     * @param \Doctrine\Common\Collections\Collection $entreprises
+     * @return Domain
+     */
+    public function setEntreprises(\Doctrine\Common\Collections\Collection $entreprises = null) {
+        $this->entreprises = $entreprises;
+
+        return $this;
+    }
+
+    /**
+     * Remove entreprise
+     *
+     * @param AppBundle\Entity\Entreprise $entreprise
+     * @return Domain
+     */
+    public function removeEntreprise(AppBundle\Entity\Entreprise $entreprise) {
+        $this->entreprises->removeElement($entreprise);
+        return $this;
+    }
+    
+    /**
+     * Add alertProcedure
+     *
+     * @param AppBundle\Entity\AlertProcedure $alertProcedure 
+     * @return Domain
+     */
+    public function addAlertProcedure(AppBundle\Entity\AlertProcedure $alertProcedure) {
+        $this->alertProcedures[] = $alertProcedure;
+        return $this;
+    }
+
+    /**
+     * Get alertProcedures
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAlertProcedures() {
+        return $this->alertProcedures;
+    }
+
+    /**
+     * Set alertProcedures
+     *
+     * @param \Doctrine\Common\Collections\Collection $alertProcedures
+     * @return Domain
+     */
+    public function setAlertProcedures(\Doctrine\Common\Collections\Collection $alertProcedures = null) {
+        $this->alertProcedures = $alertProcedures;
+
+        return $this;
+    }
+
+    /**
+     * Remove entreprise
+     *
+     * @param AppBundle\Entity\AlertProcedure $alertProcedure
+     * @return Domain
+     */
+    public function removeAlertProcedure(AppBundle\Entity\AlertProcedure $alertProcedure) {
+        $this->alertProcedures->removeElement($alertProcedure);
+        return $this;
     }
 }
 
