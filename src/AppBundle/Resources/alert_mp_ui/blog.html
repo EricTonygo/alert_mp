@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Bokk Taxi</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.6/semantic.min.css">
+    <link rel="stylesheet" href="plugins/flexslider/flexslider.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.6/semantic.min.js"></script>
+    <script type="text/javascript" src="plugins/flexslider/jquery.flexslider-min.js"></script>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+    </style>
+    <script>
+        $(document)
+                .ready(function() {
+                    $('.ui.sidebar')
+                            .sidebar({
+                                context: $('.bottom.segment'),
+                                dimPage: false
+                            })
+                            .sidebar('overlay')
+                            .sidebar('attach events', '.main.menu .mobile_menu.item')
+                    ;
+                    // show dropdown on hover
+                    $('.ui.dropdown').dropdown({
+                        on: 'hover'
+                    });
+
+                    $('.ui.accordion')
+                            .accordion({
+                            })
+                    ;
+
+                    $('a.item').click(function(){
+                        $('a.item').removeClass('active');
+                        $(this).addClass('active')
+                    })
+                })
+        ;
+    </script>
+</head>
+<body>
+<div class="ui mobile_top_nav top inverted fixed main menu" style="display: none">
+    <div class="ui container">
+        <div class="ui left inverted secondary menu">
+            <a id="logo_mobile_menu" class="item">
+                <img class="ui tiny image" src="images/mobile_logo_Bokk-Taxi.png">
+            </a>
+        </div>
+        <div class="right menu">
+            <a class="mobile_menu item"><i class="sidebar icon"></i></a>
+        </div>
+    </div>
+</div>
+<div class="ui computer_top_nav top inverted fixed main menu">
+    <div class="ui container">
+        <div class="ui left inverted secondary menu">
+            <a id="logo_computer_menu" class="item">
+                <img class="ui tiny image" src="images/logo_Bokk-Taxi.png">
+            </a>
+        </div>
+        <div class="ui center inverted secondary pointing menu">
+            <a href="#apropos" class="item">A propos </a>
+            <a href="#team" class="item">Notre equipe </a>
+            <a href="#demo" class="item">Demo </a>
+            <a href="blog.html" class="active item">Blog </a>
+            <a href="#contact" class="item">Contactez nous </a>
+        </div>
+        <div class="ui right inverted secondary menu">
+            <a class="ui circular facebook icon button item">
+                <i class="large facebook icon"></i>
+            </a>
+            <a class="ui circular twitter icon button item">
+                <i class="large twitter icon"></i>
+            </a>
+            <a class="ui circular linkedin icon button item">
+                <i class="large linkedin icon"></i>
+            </a>
+        </div>
+    </div>
+
+</div>
+<div class="ui bottom attached segment pushable">
+    <div class="ui inverted labeled icon top fixed inline vertical sidebar menu">
+        <a href="#apropos" class="item">A propos </a>
+        <a href="#team" class="item">Notre equipe </a>
+        <a href="#demo" class="item">Demo </a>
+        <a href="blog.html" class="active item">Blog </a>
+        <a href="#contact" class="item">Contactez nous </a>
+    </div>
+    <div class="pusher">
+        <div class="ui basic segment container">
+            <div class="ui doubling stackable grid">
+                <div id="content_posts" class="ten wide column">
+                    <div class="ui card">
+                        <div class="content">
+                            <div class="right floated meta">14h</div><img class="ui avatar image" src="/images/avatar/large/elliot.jpg"> Elliot </div>
+                        <div class="image" style="background-image: url('images/Logo_Bokk-Taxi-en-png.png'); height: 20em">
+                            <img>
+                        </div>
+                        <div class="content">
+                            <div class="header">Elyse</div>
+                            <div class="description">Elyse is a copywriter working in New York. </div>
+                        </div>
+                        <div class="extra content">
+                            <span class="right floated"> <i class="heart outline like icon"></i> 17 likes </span> <i class="comment icon"></i> 3 comments
+                        </div>
+                    </div>
+                    <div class="ui card">
+                        <div class="content">
+                            <div class="right floated meta">14h</div><img class="ui avatar image" src="/images/avatar/large/elliot.jpg"> Elliot </div>
+                        <div class="image">
+                            <img>
+                        </div>
+                        <div class="content">
+                            <div class="header">Elyse</div>
+                            <div class="description">Elyse is a copywriter working in New York. </div>
+                        </div>
+                        <div class="extra content">
+                            <span class="right floated"> <i class="heart outline like icon"></i> 17 likes </span> <i class="comment icon"></i> 3 comments
+                        </div>
+                    </div>
+                </div>
+                <div class="five wide column right floated" style="min-height: 20em; background: white"></div>
+            </div>
+        </div>
+        <div class="ui inverted footer segment">
+            <div class="ui container">
+                <div class="header">
+                    <h3>Bokk Taxi<span style="float: right;">Adresse</span></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('.flexslider').flexslider({
+        animation: "fade"
+    });
+    $('.ui.sticky')
+            .sticky({
+                context: '#example1'
+            })
+    ;
+</script>
+</body>
+</html>
