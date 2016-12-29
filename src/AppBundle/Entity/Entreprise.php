@@ -96,6 +96,20 @@ class Entreprise
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Subscriber", mappedBy="subscriber", cascade={"remove", "persist"})
      */
     private $subscribers;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="create_date", type="datetime")
+     */
+    private $createDate;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="last_update_date", type="datetime")
+     */
+    private $lastUpdateDate;
 
     /** 
      * Constructor
@@ -428,6 +442,54 @@ class Entreprise
     public function removeSubscriber(AppBundle\Entity\Subscriber $subscriber) {
         $this->subscribers->removeElement($subscriber);
         return $this;
+    }
+    
+    /**
+     * Set createDate
+     *
+     * @param \DateTime $createDate
+     *
+     * @return Entreprise
+     */
+    public function setCreateDate($createDate)
+    {
+        $this->createDate = $createDate;
+
+        return $this;
+    }
+
+    /**
+     * Get createDate
+     *
+     * @return \DateTime
+     */
+    public function getCreateDate()
+    {
+        return $this->createDate;
+    }
+    
+    /**
+     * Set lastUpdateDate
+     *
+     * @param \DateTime $lastUpdateDate
+     *
+     * @return Entreprise
+     */
+    public function setLastUpdateDate($lastUpdateDate)
+    {
+        $this->lastUpdateDate = $lastUpdateDate;
+
+        return $this;
+    }
+
+    /**
+     * Get lastUpdateDate
+     *
+     * @return \DateTime
+     */
+    public function getLastUpdateDate()
+    {
+        return $this->lastUpdateDate;
     }
 }
 

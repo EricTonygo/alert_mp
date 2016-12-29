@@ -189,7 +189,7 @@ div#home{
 
 .ui.secondary.inverted.menu .active.item {
     background: rgba(255,255,255,.15);
-    color: #f7aa1a!important;
+    color: #ffffff!important;
 }
 
 .ui.inverted.secondary.pointing.menu .item:hover{
@@ -396,8 +396,8 @@ canvas{
 }
 
 
-.ui.dropdown .menu>.divider{
-    border-top: 1px solid rgb(255, 255, 255);
+.ui.dropdown .menu>.divider {
+    border-top: 1px solid rgba(0, 0, 0, 0.77);
 }
 
 .ui.menu .ui.dropdown .menu>.item .icon:not(.dropdown) {
@@ -448,9 +448,9 @@ canvas{
     font-weight: bold;
 }
 
-#first_computer_top_nav .ui.secondary.inverted.menu a.item {
+/*#first_computer_top_nav .ui.secondary.inverted.menu a.item {
     color: rgb(255, 255, 255)!important;
-}
+}*/
 
 #second_computer_top_nav .ui.secondary.inverted.menu .item {
     color: black!important;
@@ -478,4 +478,35 @@ body.pushable>.pusher {
     right: 20px;
     z-index: 2;
     box-shadow: 0px 2px 10px rgba(0,0,0,.3), 0px 0px 1px rgba(0,0,0,.1), inset 0px 1px 0px rgba(255,255,255,.25), inset 0px -1px 0px rgba(0,0,0,.15);
+}
+
+.ui.menu .ui.dropdown .menu>.item {
+    color: black!important;
+}
+
+.ui.vertical.accordion.following.inverted.sidebar.menu {
+    background: #ffffff;
+}
+
+.ui.inverted.accordion .title:not(.ui) {
+    color: rgb(0, 0, 0);
+}
+
+.ui.vertical.inverted.menu .menu .item{
+    color: rgb(0, 0, 0);
+}
+
+.sidebar_title.item{
+    color: rgb(0, 0, 0)!important;
+    font-size: 26px;
+    font-weight:bold; 
+}
+
+.item .title>a{
+    color: rgb(0, 0, 0)!important;
+}
+
+.ui.floating.label {
+    top: 0em;
+    left: 80%;
 }

@@ -60,6 +60,20 @@ class HistoricalAlertSubscriber
     private $alertType;
     
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="create_date", type="datetime")
+     */
+    private $createDate;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="last_update_date", type="datetime")
+     */
+    private $lastUpdateDate;
+    
+    /**
      * Constructor
     */
     public function __construct() {
@@ -192,6 +206,55 @@ class HistoricalAlertSubscriber
     public function getProcedureType()
     {
         return $this->procedureType;
+    }
+    
+    
+    /**
+     * Set createDate
+     *
+     * @param \DateTime $createDate
+     *
+     * @return HistoricalAlertSubscriber
+     */
+    public function setCreateDate($createDate)
+    {
+        $this->createDate = $createDate;
+
+        return $this;
+    }
+    
+    /**
+     * Get createDate
+     *
+     * @return \DateTime
+     */
+    public function getCreateDate()
+    {
+        return $this->createDate;
+    }
+    
+    /**
+     * Set lastUpdateDate
+     *
+     * @param \DateTime $lastUpdateDate
+     *
+     * @return HistoricalAlertSubscriber
+     */
+    public function setLastUpdateDate($lastUpdateDate)
+    {
+        $this->lastUpdateDate = $lastUpdateDate;
+
+        return $this;
+    }
+
+    /**
+     * Get lastUpdateDate
+     *
+     * @return \DateTime
+     */
+    public function getLastUpdateDate()
+    {
+        return $this->lastUpdateDate;
     }
 }
 
