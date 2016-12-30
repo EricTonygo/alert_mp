@@ -70,9 +70,18 @@
                 </div>
             </div>
             <div class="ui right inverted secondary menu">
-                <a class="ui circular icon button item">
+                <div class="ui dropdown top right pointing item">
                     <i class="large alarm icon"></i><div class="floating ui red label">22</div>
-                </a>
+                    <div class="menu">
+                        <a href='#' class="ui item">
+                            First Notification                         
+                        </a>
+                        <div class="divider"></div>
+                        <a href="#" class="ui item">
+                            Second notification 
+                        </a>
+                    </div>
+                </div>
                 <div class="ui dropdown top right pointing item">
                     <img class="ui avatar image" src="images/avatar_1.png">
                     <div class="menu">
@@ -131,11 +140,15 @@
 
         <div class="ui bottom attached segment pushable">
             <div class="pusher">
-                <div class="ui basic segment container">
-                    <div class="ui two column doubling stackable center aligned grid">
-                        <div class="column">
-                            <div class="ui fluid card">
+                <div class="ui singup_contenair basic segment container">
+                    <!--div class="ui two column doubling stackable center aligned grid"-->
+                        <!--div class="column"-->
+                            <div class="ui centered card">
+                                <div class="first content text center aligned">
+                                    <h2 class="header">Créer un compte utilisateur</h2>
+                                </div>
                                 <div class="content">
+                                    <p>Veuillez renseigner les informations de l'utilisateur ici
                                     <form class="ui form">
                                         <div class="field">
                                             <label class="left aligned">Nom</label>
@@ -147,8 +160,8 @@
                                         </div>
                                         
                                         <div class="field">
-                                            <label class="left aligned">Login</label>
-                                            <input type="text" name="login" placeholder="Nom">
+                                            <label class="left aligned">Matricule</label>
+                                            <input type="text" name="username" placeholder="Matricule">
                                         </div>
                                         <div class="field">
                                             <label class="left aligned">Mot de passe</label>
@@ -165,11 +178,12 @@
                                             </div>
                                         </div>
                                         <button class="ui right floated primary button" type="submit">Créer le compte</button>
+                                        <button class="ui right floated red button" type="reset">Effacer tout</button>
                                     </form>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        <!--/div-->
+                    <!--/div-->
                 </div>
             </div>
         </div>

@@ -10,4 +10,63 @@ namespace AppBundle\Repository;
  */
 class SubscriberRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function deleteSubscriber(\AppBundle\Entity\Subscriber $subscriber) {
+        $em= $this->_em;
+        $subscriber->setStatut(0);
+        $em->getConnection()->beginTransaction();
+        try{
+            $em->persist($subscriber);
+            $em->flush();
+            $em->getConnection()->commit();
+        } catch (Exception $ex) {
+            $em->getConnection()->rollback();
+            $em->close();
+            throw $ex;
+        }
+    }
+
+
+    public function saveSubscriber(\AppBundle\Entity\Subscriber $subscriber) {
+        $em= $this->_em;
+        $subscriber->setStatut(1);
+        $em->getConnection()->beginTransaction();
+        try{
+            $em->persist($subscriber);
+            $em->flush();
+            $em->getConnection()->commit();
+        } catch (Exception $ex) {
+            $em->getConnection()->rollback();
+            $em->close();
+            throw $ex;
+        }
+    }
+
+    public function updateSubscriber(\AppBundle\Entity\Subscriber $subscriber) {
+        $em= $this->_em;
+        $em->getConnection()->beginTransaction();
+        try{
+            $em->persist($subscriber);
+            $em->flush();
+            $em->getConnection()->commit();
+        } catch (Exception $ex) {
+            $em->getConnection()->rollback();
+            $em->close();
+            throw $ex;
+        }
+    }
+    public function getAll() 
+    {
+        $qb = $this->createQueryBuilder('s');
+        $qb->where('s.status = :status')
+           ->setParameter('status', 1);
+        return $qb->getQuery()->getResult();
+    }
+    
+    public function getSubscriberQueryBuilder() {
+         return $this
+          ->createQueryBuilder('s')
+          ->where('s.status = :status')
+          ->setParameter('status', 1);
+
+    }
 }
