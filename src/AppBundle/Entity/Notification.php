@@ -13,9 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
 class Notification
 {
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="bigint")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -41,6 +41,20 @@ class Notification
      * @ORM\Column(name="url", type="string", length=255)
      */
     private $url;
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="status", type="integer")
+     */
+    private $status;
+    
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->status = 1;
+    }
 
 
     /**
@@ -123,6 +137,30 @@ class Notification
     public function getUrl()
     {
         return $this->url;
+    }
+    
+    /**
+     * Set status
+     *
+     * @param integer $status
+     *
+     * @return Notification
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return int
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }
 

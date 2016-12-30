@@ -13,9 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
 class SpecialFollowUp
 {
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="bigint")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -35,6 +35,27 @@ class SpecialFollowUp
      */
     private $description;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="status", type="integer")
+     */
+    private $status;
+    
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Subscriber", inversedBy="specialFollowUps", cascade={"persist"})
+     * 
+     */
+    private $subscribers;
+    
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->status = 1;
+    }
 
     /**
      * Get id
@@ -92,6 +113,73 @@ class SpecialFollowUp
     public function getDescription()
     {
         return $this->description;
+    }
+    
+    /**
+     * Set status
+     *
+     * @param integer $status
+     *
+     * @return SpecialFollowUp
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return int
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+    
+    /**
+     * Add subscriber
+     *
+     * @param AppBundle\Entity\Subscriber $subscriber
+     * @return SpecialFollowUp
+     */
+    public function addSubscriber(AppBundle\Entity\Subscriber $subscriber) {
+        $this->subscribers[] = $subscriber;
+        return $this;
+    }
+
+    /**
+     * Get subscribers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSubscribers() {
+        return $this->subscribers;
+    }
+
+    /**
+     * Set subscribers
+     *
+     * @param \Doctrine\Common\Collections\Collection $subscribers
+     * @return SpecialFollowUp
+     */
+    public function setSubscribers(\Doctrine\Common\Collections\Collection $subscribers = null) {
+        $this->subscribers = $subscribers;
+
+        return $this;
+    }
+
+    /**
+     * Remove subscribers
+     *
+     * @param AppBundle\Entity\Subscriber $subscriber
+     * @return SpecialFollowUp
+     */
+    public function removeSubscriber(AppBundle\Entity\Subscriber $subscriber) {
+        $this->entreprises->removeElement($subscriber);
+        return $this;
     }
 }
 

@@ -7,15 +7,14 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * AlertProcedure
  *
- * @ORM\Table(name="alert_procedure")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\AlertProcedureRepository")
+ * @ORM\MappedSuperClass
  */
 class AlertProcedure
 {
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="bigint")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -83,8 +82,22 @@ class AlertProcedure
      * @ORM\Column(name="sending_date", type="datetime")
      */
     private $sendingDate;
+    
+    /**
+     * @var \Domain
+     *
+     * @ORM\ManyToOne(targetEntity="Domain")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="domain", referencedColumnName="id")
+     * })
+     */
+    private $domain;
 
 
+    public function __construct() {
+        $this->status = 1;
+    }
+    
     /**
      * Get id
      *
@@ -309,6 +322,30 @@ class AlertProcedure
     public function getSendingDate()
     {
         return $this->sendingDate;
+    }
+    
+    /**
+     * Set domain
+     *
+     * @param AppBundle\Entity\Domain $domain
+     *
+     * @return AlertProcedure
+     */
+    public function setDomain($domain)
+    {
+        $this->domain = $domain;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return AppBundle\Entity\Domain
+     */
+    public function getDomain()
+    {
+        return $this->domain;
     }
 }
 

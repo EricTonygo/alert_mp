@@ -13,21 +13,58 @@ use Doctrine\ORM\Mapping as ORM;
 class HistoricalAlertSubscriber
 {
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="bigint")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="status", type="integer")
+     */
+    private $status;
+    
+    /**
+     * @var \Subscriber
+     *
+     * @ORM\ManyToOne(targetEntity="Subscriber")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="subscriber", referencedColumnName="id")
+     * })
+     */
+    private $subscriber;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="message", type="text")
      */
-    private $type;
-
+    private $message;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="procedureType", type="string", length=255)
+     */
+    private $procedureType;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="alertType", type="string", length=255)
+     */
+    private $alertType;
+    
+    /**
+     * Constructor
+    */
+    public function __construct() {
+        $this->status = 1;
+    }
 
     /**
      * Get id
@@ -40,27 +77,121 @@ class HistoricalAlertSubscriber
     }
 
     /**
-     * Set type
+     * Set status
      *
-     * @param string $type
+     * @param integer $status
      *
      * @return HistoricalAlertSubscriber
      */
-    public function setType($type)
+    public function setStatus($status)
     {
-        $this->type = $type;
+        $this->status = $status;
 
         return $this;
     }
 
     /**
-     * Get type
+     * Get status
+     *
+     * @return int
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+    
+    /**
+     * Set subscriber
+     *
+     * @param \NNGenie\InfosMatBundle\Entity\Subscriber $subscriber
+     * @return HistoricalAlertSubscriber
+     */
+    public function setSubscriber(\NNGenie\InfosMatBundle\Entity\Subscriber $subscriber = null)
+    {
+        $this->subscriber = $subscriber;
+        return $this;
+    }
+    
+    /**
+    * Get subscriber
+    *
+    * @return \NNGenie\InfosMatBundle\Entity\Subscriber 
+    */
+    public function getSubscriber()
+    {
+        return $this->subscriber;
+    }
+    
+    /**
+    * Set message
+    *
+    * @param string $message
+    *
+    * @return HistoricalAlertSubscriber
+    */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Get message
      *
      * @return string
      */
-    public function getType()
+    public function getMessage()
     {
-        return $this->type;
+        return $this->message;
+    }
+    
+    /**
+     * Set alertType
+     *
+     * @param string $alertType
+     *
+     * @return HistoricalAlertSubscriber
+     */
+    public function setAlertType($alertType)
+    {
+        $this->alertType = $alertType;
+
+        return $this;
+    }
+
+    /**
+     * Get alertType
+     *
+     * @return string
+     */
+    public function getAlertType()
+    {
+        return $this->alertType;
+    }
+    
+    /**
+     * Set procedureType
+     *
+     * @param string $procedureType
+     *
+     * @return HistoricalAlertSubscriber
+     */
+    public function setProcedureType($procedureType)
+    {
+        $this->procedureType = $procedureType;
+
+        return $this;
+    }
+
+    /**
+     * Get procedureType
+     *
+     * @return string
+     */
+    public function getProcedureType()
+    {
+        return $this->procedureType;
     }
 }
 

@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Call_offer
+ * Result
  *
- * @ORM\Table(name="call_offer")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CallOfferRepository")
+ * @ORM\Table(name="procedure_result")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ProcedureResultRepository")
  */
-class CallOffer extends AlertProcedure
+class ProcedureResult extends AlertProcedure
 {
     /**
      * Constructor
