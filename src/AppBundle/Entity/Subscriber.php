@@ -5,9 +5,9 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Subcriber
+ * Subscriber
  *
- * @ORM\Table(name="subcriber")
+ * @ORM\Table(name="subscriber")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SubscriberRepository")
  */
 class Subscriber
@@ -67,14 +67,14 @@ class Subscriber
     private $entreprise;
     
     /**
-     * @var \Subcription
+     * @var \Subscription
      *
-     * @ORM\ManyToOne(targetEntity="Subcription")
+     * @ORM\ManyToOne(targetEntity="Subscription")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="subcription", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="subscription", referencedColumnName="id")
      * })
      */
-    private $subcription;
+    private $subscription;
     
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -276,7 +276,7 @@ class Subscriber
      */
     public function setSubscription($subscription)
     {
-        $this->subcription = $subscription;
+        $this->subscription = $subscription;
 
         return $this;
     }
@@ -288,7 +288,7 @@ class Subscriber
      */
     public function getSubscription()
     {
-        return $this->subcription;
+        return $this->subscription;
     }
     
     /**

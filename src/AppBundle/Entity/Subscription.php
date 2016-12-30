@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Subcription
+ * Subscription
  *
- * @ORM\Table(name="subcription")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\SubcriptionRepository")
+ * @ORM\Table(name="subscription")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SubscriptionRepository")
  */
-class Subcription
+class Subscription
 {
     /**
      * @var integer

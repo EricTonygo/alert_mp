@@ -65,7 +65,7 @@ class AlertProcedure
     /**
      * @var string
      *
-     * @ORM\Column(name="maitre_ouvrage", type="text")
+     * @ORM\Column(name="maitre_ouvrage", type="string", length=255)
      */
     private $maitreOuvrage;
 
@@ -77,14 +77,14 @@ class AlertProcedure
     private $abstract;
 
     /**
-     * @var int
+     * @var integer
      *
      * @ORM\Column(name="status", type="integer")
      */
     private $status;
 
     /**
-     * @var int
+     * @var integer
      *
      * @ORM\Column(name="state", type="integer")
      */

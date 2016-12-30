@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 /**
  * Entreprise
  *
- * @ORM\Table(name="subscriber")
+ * @ORM\Table(name="entreprise")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\EntrepriseRepository")
  * @ORM\HasLifecycleCallbacks
  */
