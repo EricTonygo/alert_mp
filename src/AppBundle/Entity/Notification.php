@@ -29,9 +29,9 @@ class Notification
     private $content;
 
     /**
-     * @var string
+     * @var boolean
      *
-     * @ORM\Column(name="view", type="string", length=255)
+     * @ORM\Column(name="view", type="boolean")
      */
     private $view;
 
