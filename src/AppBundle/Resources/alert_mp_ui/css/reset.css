@@ -4,8 +4,8 @@ body{
     /*background-image: url("../images/Logo_Bokk-Taxi-en-png.png");*/
 }
 
-a:hover{
-    color: #f7aa1a!important;
+html{
+    background: #fafafa;
 }
 
 body, a, p, h1, div, h2, h3, h4, h5, h6 {
@@ -215,8 +215,8 @@ div#home{
 }
 
 .ui.centered.card .content h2.header{
-    font-size: 2em;
-    margin-bottom: 1.5em;
+    /*font-size: 2em;
+    margin-bottom: 1.5em;*/
 }
 
 #apropos .ui.centered.card{
@@ -227,13 +227,9 @@ div#home{
 }
 
 .ui.centered.card .first.content {
-    background: #fabd2b;
+   /* background: #fabd2b;*/
 }   
 
-.ui.centered.card {
-    margin-left: 0px;
-    margin-right: 0px;
-}
 
 #apropos .ui.centered.card .content{
     border-top:none;
@@ -353,7 +349,7 @@ canvas{
 }
 
 .ui.card{
-    box-shadow: none;
+    /*box-shadow: none;*/
 }
 
 .ui.button{
@@ -509,4 +505,13 @@ body.pushable>.pusher {
 .ui.floating.label {
     top: 0em;
     left: 80%;
+}
+
+.login_contenair .ui.card {
+    width: 25em;
+    margin-top: 5em;
+}
+
+.singup_contenair .ui.card {
+    width: 40em;
 }
