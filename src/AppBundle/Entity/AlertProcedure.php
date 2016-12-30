@@ -65,9 +65,9 @@ class AlertProcedure
     /**
      * @var string
      *
-     * @ORM\Column(name="maitre_ouvrage", type="string", length=255)
+     * @ORM\Column(name="owner", type="string", length=255)
      */
-    private $maitreOuvrage;
+    private $owner;
 
     /**
      * @var string
@@ -257,27 +257,27 @@ class AlertProcedure
     }
     
     /**
-     * Set maitreOuvrage
+     * Set owner
      *
-     * @param string $maitreOuvrage
+     * @param string $owner
      *
      * @return AlertProcedure
      */
-    public function setMaitreOuvrage($maitreOuvrage)
+    public function setOwner($owner)
     {
-        $this->maitreOuvrage = $maitreOuvrage;
+        $this->owner = $owner;
 
         return $this;
     }
 
     /**
-     * Get maitreOuvrage
+     * Get owner
      *
      * @return string
      */
-    public function getMaitreOuvrage()
+    public function getOwner()
     {
-        return $this->maitreOuvrage;
+        return $this->owner;
     }
 
     /**

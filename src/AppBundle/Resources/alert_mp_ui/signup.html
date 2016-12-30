@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="plugins/flexslider/flexslider.css">
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.6/semantic.min.js"></script>
-        <script type="text/javascript" src="plugins/flexslider/jquery.flexslider-min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
         <link rel="stylesheet" href="css/reset.css">
         <style>
         </style>
@@ -90,7 +90,7 @@
                             Profil                         
                         </a>
                         <div class="divider"></div>
-                        <a href="#" class="ui item">
+                        <a href="signin.html" class="ui item">
                             Deconnexion
                         </a>
                     </div>
@@ -142,55 +142,72 @@
             <div class="pusher">
                 <div class="ui singup_contenair basic segment container">
                     <!--div class="ui two column doubling stackable center aligned grid"-->
-                        <!--div class="column"-->
-                            <div class="ui centered card">
-                                <div class="first content text center aligned">
-                                    <h2 class="header">Créer un compte utilisateur</h2>
+                    <!--div class="column"-->
+                    <div class="ui centered card">
+                        <div class="first content text center aligned">
+                            <h2 class="header">Créer un compte utilisateur</h2>
+                        </div>
+                        <div class="content">
+                            <p>Veuillez renseigner les informations de l'utilisateur ici
+                            <form id="register_form" class="box ui form">
+                                <div class="field">
+                                    <label class="left aligned" >Prénom</label>
+                                    <input type="text" name="firstname" placeholder="Prénom">
                                 </div>
-                                <div class="content">
-                                    <p>Veuillez renseigner les informations de l'utilisateur ici
-                                    <form class="ui form">
-                                        <div class="field">
-                                            <label class="left aligned">Nom</label>
-                                            <input type="text" name="first-name" placeholder="Nom">
-                                        </div>
-                                        <div class="field">
-                                            <label class="left aligned" >Prenom</label>
-                                            <input type="text" name="last-name" placeholder="Prénom">
-                                        </div>
-                                        
-                                        <div class="field">
-                                            <label class="left aligned">Matricule</label>
-                                            <input type="text" name="username" placeholder="Matricule">
-                                        </div>
-                                        <div class="field">
-                                            <label class="left aligned">Mot de passe</label>
-                                            <div class="ui icon input">
-                                                <i class="unhide icon" style="cursor: default; z-index: 2"></i>
-                                                <input type="password" name="password" placeholder="Mot de passe">
-                                            </div>
-                                        </div>
-                                        <div class="field">
-                                            <label class="left aligned" >Confirmation du mot de passe</label>
-                                            <div class="ui icon input">
-                                                <i class="unhide icon" style="cursor: default; z-index: 2"></i>
-                                                <input type="password" name="password" placeholder="Confirmation du mot de passe">
-                                            </div>
-                                        </div>
-                                        <button class="ui right floated primary button" type="submit">Créer le compte</button>
-                                        <button class="ui right floated red button" type="reset">Effacer tout</button>
-                                    </form>
+
+                                <div class="field">
+                                    <label class="left aligned">Nom</label>
+                                    <input type="text" name="lastname" placeholder="Nom">
                                 </div>
-                            </div>
-                        <!--/div-->
+
+                                <div class="field">
+                                    <label class="left aligned">Email</label>
+                                    <input type="email" name="email" placeholder="Email">
+                                </div>
+
+                                <div class="field">
+                                    <label class="left aligned">Matricule</label>
+                                    <input type="text" name="username" placeholder="Matricule">
+                                </div>
+
+                                <div class="field">
+                                    <label class="left aligned">Mot de passe</label>
+                                    <div class="ui icon input">
+                                        <i class="unhide icon" style="cursor: default; z-index: 2"></i>
+                                        <input type="password" name="password" placeholder="Mot de passe">
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="left aligned" >Confirmation du mot de passe</label>
+                                    <div class="ui icon input">
+                                        <i class="unhide icon" style="cursor: default; z-index: 2"></i>
+                                        <input type="password" name="passwordConfirm" placeholder="Confirmation du mot de passe">
+                                    </div>
+                                </div>
+
+                                <button class="ui right floated primary button" type="submit">Créer le compte</button>
+                                <button class="ui right floated red button" type="reset">Effacer tout</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!--/div-->
                     <!--/div-->
                 </div>
             </div>
         </div>
         <script>
-            $('.flexslider').flexslider({
-                animation: "fade"
-            });
+            /*$(function () {
+                var isAdvancedUpload = function () {
+                    var div = document.createElement('div');
+                    return (('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window;
+                }();
+                var $form = $('.box');
+
+                if (isAdvancedUpload) {
+                    $form.addClass('has-advanced-upload');
+                }
+            });*/
         </script>
     </body>
 </html>

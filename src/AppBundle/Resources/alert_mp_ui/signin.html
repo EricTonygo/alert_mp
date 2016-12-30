@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="plugins/flexslider/flexslider.css">
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.6/semantic.min.js"></script>
-        <script type="text/javascript" src="plugins/flexslider/jquery.flexslider-min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
         <link rel="stylesheet" href="css/reset.css">
         <style>
         </style>
@@ -73,10 +73,10 @@
                                     <h2 class="header">Se connecter pour avoir accès</h2>
                                 </div>
                                 <div class="content">
-                                    <form class="ui form">
+                                    <form id="login_form" class="ui form" action="call_offer.html">
                                         <div class="field">
-                                            <label>Login</label>
-                                            <input type="text" name="first-name" placeholder="Login">
+                                            <label>Matricule ou email</label>
+                                            <input type="text" name="username_email" placeholder="Login">
                                         </div>
                                         <div class="field">
                                             <label>Password</label>

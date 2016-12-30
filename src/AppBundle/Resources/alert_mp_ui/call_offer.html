@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="plugins/flexslider/flexslider.css">
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.6/semantic.min.js"></script>
-        <script type="text/javascript" src="plugins/flexslider/jquery.flexslider-min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
         <link rel="stylesheet" href="css/reset.css">
         <style>
         </style>
@@ -38,12 +38,6 @@
                         $('a.item').click(function () {
                             $('a.item').removeClass('active');
                             $(this).addClass('active');
-                        });
-
-                        $('#add_call_offer').click(function () {
-                            $('.ui.modal')
-                                    .modal('show')
-                                    ;
                         });
                     });
             ;
@@ -115,7 +109,7 @@
                 </div>
 
                 <div class="ui right inverted secondary menu">
-                    <a class="ui circular icon button item">
+                    <a id='show_list_table' class="ui circular icon button item">
                         <i class="large list layout icon"></i>
                     </a>
                     <a class="ui circular icon button item">
@@ -168,7 +162,7 @@
 
         <div class="ui bottom attached segment pushable">
             <div class="pusher">
-                <div class="ui basic segment container">
+                <div id='list_as_grid' class="ui basic segment container">
                     <div class="ui four column doubling stackable grid">
                         <div class="column">
                             <div class="ui fluid card">
@@ -187,90 +181,21 @@
                                             <i class="ellipsis vertical icon"></i>
                                             <div class="menu">
                                                 <div class="ui item">
+                                                    <i class="unhide icon"></i>
+                                                    Details
+                                                </div>
+                                                <div class="item">
+                                                    <i class="edit icon"></i>
                                                     Modifier
                                                 </div>
                                                 <div class="item">
+                                                    <i class="trash icon"></i>
                                                     Supprimer
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div><i class="user icon"></i> 23 Mars 2016 </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="ui fluid card">
-                                <div class="image">
-                                    <img src="images/avatar_1.png" alt=""/>
-                                </div>
-                                <div class="content">
-                                    <div class="header">Titre</div>
-                                    <div class="description">
-                                        Description de l'appel d'offre
-                                    </div>
-                                </div>
-                                <div class="extra content">
-                                    <span class="right floated">
-                                        <div class="ui dropdown item">
-                                            <i class="ellipsis vertical icon"></i>
-                                            <div class="menu">
-                                                <div class="ui item">
-                                                    Modifier
-                                                </div>
-                                                <div class="item">
-                                                    Supprimer
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </span>
-                                    <span><i class="user icon"></i> 23 Mars 2016 </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="ui fluid card">
-                                <div class="image">
-                                    <img src="images/avatar_1.png" alt=""/>
-                                </div>
-                                <div class="content">
-                                    <div class="header">Titre</div>
-                                    <div class="description">
-                                        Description de l'appel d'offre
-                                    </div>
-                                </div>
-                                <div class="extra content">
-                                    <span class="right floated"><i class="ellipsis vertical icon"></i> </span>
-                                    <span><i class="user icon"></i> 23 Mars 2016 </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="ui fluid card">
-                                <div class="image">
-                                    <img src="images/avatar_1.png" alt=""/>
-                                </div>
-                                <div class="content">
-                                    <div class="header">Titre</div>
-                                    <div class="description">
-                                        Description de l'appel d'offre
-                                    </div>
-                                </div>
-                                <div class="extra content">
-                                    <span class="right floated">
-                                        <div class="ui dropdown item">
-                                            <i class="ellipsis vertical icon"></i>
-                                            <div class="menu">
-                                                <div class="ui item">
-                                                    Modifier
-                                                </div>
-                                                <div class="item">
-                                                    Supprimer
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </span>
-                                    <span><i class="user icon"></i> 23 Mars 2016 </span>
+                                    <div><i class="calendar icon"></i> 23 Mars 2016 </div>
                                 </div>
                             </div>
                         </div>
@@ -291,72 +216,238 @@
                                             <i class="ellipsis vertical icon"></i>
                                             <div class="menu">
                                                 <div class="ui item">
+                                                    <i class="unhide icon"></i>
+                                                    Details
+                                                </div>
+                                                <div class="item">
+                                                    <i class="edit icon"></i>
                                                     Modifier
                                                 </div>
                                                 <div class="item">
+                                                    <i class="trash icon"></i>
                                                     Supprimer
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <span><i class="user icon"></i> 23 Mars 2016 </span>
+                                    <div><i class="calendar icon"></i> 23 Mars 2016 </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="ui fluid card">
+                                <div class="image">
+                                    <img src="images/avatar_1.png" alt=""/>
+                                </div>
+                                <div class="content">
+                                    <div class="header">Titre</div>
+                                    <div class="description">
+                                        Description de l'appel d'offre
+                                    </div>
+                                </div>
+                                <div class="extra content">
+                                    <div class="right floated">
+                                        <div class="ui dropdown item">
+                                            <i class="ellipsis vertical icon"></i>
+                                            <div class="menu">
+                                                <div class="ui item">
+                                                    <i class="unhide icon"></i>
+                                                    Details
+                                                </div>
+                                                <div class="item">
+                                                    <i class="edit icon"></i>
+                                                    Modifier
+                                                </div>
+                                                <div class="item">
+                                                    <i class="trash icon"></i>
+                                                    Supprimer
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div><i class="calendar icon"></i> 23 Mars 2016 </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="ui fluid card">
+                                <div class="image">
+                                    <img src="images/avatar_1.png" alt=""/>
+                                </div>
+                                <div class="content">
+                                    <div class="header">Titre</div>
+                                    <div class="description">
+                                        Description de l'appel d'offre
+                                    </div>
+                                </div>
+                                <div class="extra content">
+                                    <div class="right floated">
+                                        <div class="ui dropdown item">
+                                            <i class="ellipsis vertical icon"></i>
+                                            <div class="menu">
+                                                <div class="ui item">
+                                                    <i class="unhide icon"></i>
+                                                    Details
+                                                </div>
+                                                <div class="item">
+                                                    <i class="edit icon"></i>
+                                                    Modifier
+                                                </div>
+                                                <div class="item">
+                                                    <i class="trash icon"></i>
+                                                    Supprimer
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div><i class="calendar icon"></i> 23 Mars 2016 </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="ui fluid card">
+                                <div class="image">
+                                    <img src="images/avatar_1.png" alt=""/>
+                                </div>
+                                <div class="content">
+                                    <div class="header">Titre</div>
+                                    <div class="description">
+                                        Description de l'appel d'offre
+                                    </div>
+                                </div>
+                                <div class="extra content">
+                                    <div class="right floated">
+                                        <div class="ui dropdown item">
+                                            <i class="ellipsis vertical icon"></i>
+                                            <div class="menu">
+                                                <div class="ui item">
+                                                    <i class="unhide icon"></i>
+                                                    Details
+                                                </div>
+                                                <div class="item">
+                                                    <i class="edit icon"></i>
+                                                    Modifier
+                                                </div>
+                                                <div class="item">
+                                                    <i class="trash icon"></i>
+                                                    Supprimer
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div><i class="calendar icon"></i> 23 Mars 2016 </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div id='list_call_offer_as_table' class="ui basic segment container" style="display: none;">
+                    <table class="ui very basic table">
+                        <thead>
+                            <tr><th>Header</th>
+                                <th>Header</th>
+                                <th>Header</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="ui ribbon label">First</div>
+                                </td>
+                                <td>Cell</td>
+                                <td>Cell</td>
+                            </tr>
+                            <tr>
+                                <td>Cell</td>
+                                <td>Cell</td>
+                                <td>Cell</td>
+                            </tr>
+                            <tr>
+                                <td>Cell</td>
+                                <td>Cell</td>
+                                <td>Cell</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr><th colspan="3">
+                                    <div class="ui right floated pagination menu">
+                                        <a class="icon item">
+                                            <i class="left chevron icon"></i>
+                                        </a>
+                                        <a class="item">1</a>
+                                        <a class="item">2</a>
+                                        <a class="item">3</a>
+                                        <a class="item">4</a>
+                                        <a class="icon item">
+                                            <i class="right chevron icon"></i>
+                                        </a>
+                                    </div>
+                                </th>
+                            </tr></tfoot>
+                    </table>
+                </div> 
             </div>
-            <div class="ui small modal">
+            <div id="add_call_offer" class="ui small modal">
                 <i class="close icon"></i>
                 <div class="header">
                     Ajout d'un appel d'offre
                 </div>
                 <div class="content">
-                    <form class="ui form">
+                    <form id="add_call_offer_form" class="ui form">
                         <div class="field">
                             <label class="left aligned">Type</label>
-                            <input type="text" name="first-name" placeholder="Nom">
-                        </div>
-                        <div class="field">
-                            <label class="left aligned" >Reference</label>
-                            <input type="text" name="last-name" placeholder="Prénom">
+                            <input type="text" name="type_procedure" placeholder="Nom">
                         </div>
                         
                         <div class="field">
-                            <label class="left aligned" >Date de publication</label>
-                            <input type="text" name="last-name" placeholder="Prénom">
-                        </div>
-
-                        <div class="field">
-                            <label class="left aligned">Date limite</label>
-                            <input type="text" name="login" placeholder="Nom">
+                            <label class="left aligned" >Reference</label>
+                            <input type="text" name="reference" placeholder="Reférence">
                         </div>
                         
                         <div class="field">
                             <label class="left aligned">Objet</label>
-                            <input type="text" name="login" placeholder="Nom">
+                            <input type="text" name="object" placeholder="Object">
                         </div>
                         
+                        <div class="field">
+                            <label class="left aligned">Maître d'ouvrage</label>
+                            <input type="text" name="owner" placeholder="Maître d'ouvrage">
+                        </div>
+
+                        <div class="field">
+                            <label class="left aligned" >Date de publication</label>
+                            <input type="text" name="published_date" placeholder="Date de publication">
+                        </div>
+                        
+                        <div class="field">
+                            <label class="left aligned">Date de debut de depôt</label>
+                            <input type="text" name="opening_date" placeholder="Date de debut de depôt">
+                        </div>
+
+                        <div class="field">
+                            <label class="left aligned">Date limite</label>
+                            <input type="text" name="deadline" placeholder="Date limite">
+                        </div>
+
                     </form>
                 </div>
                 <div class="actions">
                     <div class="ui black deny button">
                         Annuler
                     </div>
-                    <div class="ui positive icon button">
+                    <div id='submit_call_offer' class="ui primary icon button">
                         <i class="save icon"></i>
                         Sauvegarder
                     </div>
                 </div>
             </div>
         </div>
-        <button id="add_call_offer" class="float_button circular ui huge red icon button">
+        <button id="add_call_offer_btn" class="float_button circular ui huge red icon button">
             <i class="icon plus"></i>
         </button>
         <script>
-            $('.flexslider').flexslider({
-                animation: "fade"
-            });
+
         </script>
     </body>
 </html>
