@@ -12,7 +12,7 @@ class SubscriptionRepository extends \Doctrine\ORM\EntityRepository
 {
     public function deleteSubscription(\AppBundle\Entity\Subscription $subscription) {
         $em= $this->_em;
-        $subscription->setStatut(0);
+        $subscription->setStatus(0);
         $subscriber = new \AppBundle\Entity\Subscriber();
         $repositorySubscriber = $em->getRepository("AppBundle:Subscriber");
         $em->getConnection()->beginTransaction();
@@ -35,7 +35,7 @@ class SubscriptionRepository extends \Doctrine\ORM\EntityRepository
 
     public function saveSubscription(\AppBundle\Entity\Subscription $subscription) {
         $em= $this->_em;
-        $subscription->setStatut(1);
+        $subscription->setStatus(1);
         $em->getConnection()->beginTransaction();
         try{
             $em->persist($subscription);

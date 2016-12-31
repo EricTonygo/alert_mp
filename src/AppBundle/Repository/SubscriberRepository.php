@@ -12,7 +12,7 @@ class SubscriberRepository extends \Doctrine\ORM\EntityRepository
 {
     public function deleteSubscriber(\AppBundle\Entity\Subscriber $subscriber) {
         $em= $this->_em;
-        $subscriber->setStatut(0);
+        $subscriber->setStatus(0);
         $em->getConnection()->beginTransaction();
         try{
             $em->persist($subscriber);
@@ -28,7 +28,7 @@ class SubscriberRepository extends \Doctrine\ORM\EntityRepository
 
     public function saveSubscriber(\AppBundle\Entity\Subscriber $subscriber) {
         $em= $this->_em;
-        $subscriber->setStatut(1);
+        $subscriber->setStatus(1);
         $em->getConnection()->beginTransaction();
         try{
             $em->persist($subscriber);

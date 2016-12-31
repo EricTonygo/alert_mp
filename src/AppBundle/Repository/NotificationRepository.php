@@ -12,7 +12,7 @@ class NotificationRepository extends \Doctrine\ORM\EntityRepository
 {
     public function deleteNotification(\AppBundle\Entity\Notification $notification) {
         $em= $this->_em;
-        $notification->setStatut(0);
+        $notification->setStatus(0);
         $em->getConnection()->beginTransaction();
         try{
             $em->persist($notification);
@@ -28,7 +28,7 @@ class NotificationRepository extends \Doctrine\ORM\EntityRepository
 
     public function saveNotification(\AppBundle\Entity\Notification $notification) {
         $em= $this->_em;
-        $notification->setStatut(1);
+        $notification->setStatus(1);
         $em->getConnection()->beginTransaction();
         try{
             $em->persist($notification);

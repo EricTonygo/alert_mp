@@ -13,7 +13,7 @@ class CallOfferRepository extends EntityRepository
 {
     public function deleteCallOffer(\AppBundle\Entity\CallOffer $callOffer) {
         $em= $this->_em;
-        $callOffer->setStatut(0);
+        $callOffer->setStatus(0);
         $em->getConnection()->beginTransaction();
         try{
             $em->persist($callOffer);
@@ -29,7 +29,7 @@ class CallOfferRepository extends EntityRepository
 
     public function saveCallOffer(\AppBundle\Entity\CallOffer $callOffer) {
         $em= $this->_em;
-        $callOffer->setStatut(1);
+        $callOffer->setStatus(1);
         $em->getConnection()->beginTransaction();
         try{
             $em->persist($callOffer);

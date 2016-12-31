@@ -12,7 +12,7 @@ class ProcedureResultRepository extends \Doctrine\ORM\EntityRepository
 {
     public function deleteProcedureResult(\AppBundle\Entity\ProcedureResult $procedureResult) {
         $em= $this->_em;
-        $procedureResult->setStatut(0);
+        $procedureResult->setStatus(0);
         $em->getConnection()->beginTransaction();
         try{
             $em->persist($procedureResult);
@@ -28,7 +28,7 @@ class ProcedureResultRepository extends \Doctrine\ORM\EntityRepository
 
     public function saveProcedureResult(\AppBundle\Entity\ProcedureResult $procedureResult) {
         $em= $this->_em;
-        $procedureResult->setStatut(1);
+        $procedureResult->setStatus(1);
         $em->getConnection()->beginTransaction();
         try{
             $em->persist($procedureResult);

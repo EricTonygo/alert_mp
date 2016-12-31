@@ -12,7 +12,7 @@ class ExpressionInterestRepository extends \Doctrine\ORM\EntityRepository
 {
     public function deleteExpressionInterest(\AppBundle\Entity\ExpressionInterest $expressionInterest) {
         $em= $this->_em;
-        $expressionInterest->setStatut(0);
+        $expressionInterest->setStatus(0);
         $em->getConnection()->beginTransaction();
         try{
             $em->persist($expressionInterest);
@@ -28,7 +28,7 @@ class ExpressionInterestRepository extends \Doctrine\ORM\EntityRepository
 
     public function saveExpressionInterest(\AppBundle\Entity\ExpressionInterest $expressionInterest) {
         $em= $this->_em;
-        $expressionInterest->setStatut(1);
+        $expressionInterest->setStatus(1);
         $em->getConnection()->beginTransaction();
         try{
             $em->persist($expressionInterest);

@@ -12,7 +12,7 @@ class DomainRepository extends \Doctrine\ORM\EntityRepository
 {
      public function deleteDomain(\AppBundle\Entity\Domain $domain) {
         $em = $this->_em;
-        $domain->setStatut(0);
+        $domain->setStatus(0);
         $entreprise = new \AppBundle\Entity\Entreprise();
         $repositoryEntreprise = $em->getRepository("AppBundle:Entreprise");
         $procedureResult = new \AppBundle\Entity\ProcedureResult();
@@ -62,7 +62,7 @@ class DomainRepository extends \Doctrine\ORM\EntityRepository
 
     public function saveDomain(\AppBundle\Entity\Domain $domain) {
         $em = $this->_em;
-        $domain->setStatut(1);
+        $domain->setStatus(1);
         $em->getConnection()->beginTransaction();
         try {
             $em->persist($domain);

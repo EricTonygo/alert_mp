@@ -12,7 +12,7 @@ class SpecialFollowUpRepository extends \Doctrine\ORM\EntityRepository
 {
     public function deleteSpecialFollowUp(\AppBundle\Entity\SpecialFollowUp $specialFollowUp) {
         $em= $this->_em;
-        $specialFollowUp->setStatut(0);
+        $specialFollowUp->setStatus(0);
         $em->getConnection()->beginTransaction();
         try{
             $em->persist($specialFollowUp);
@@ -28,7 +28,7 @@ class SpecialFollowUpRepository extends \Doctrine\ORM\EntityRepository
 
     public function saveSpecialFollowUp(\AppBundle\Entity\SpecialFollowUp $specialFollowUp) {
         $em= $this->_em;
-        $specialFollowUp->setStatut(1);
+        $specialFollowUp->setStatus(1);
         $em->getConnection()->beginTransaction();
         try{
             $em->persist($specialFollowUp);

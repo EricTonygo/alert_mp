@@ -12,7 +12,7 @@ class HistoricalAlertEntrepriseRepository extends \Doctrine\ORM\EntityRepository
 {
     public function deleteHistoricalAlertEntreprise(\AppBundle\Entity\HistoricalAlertEntreprise $historicalAlertEntreprise) {
         $em= $this->_em;
-        $historicalAlertEntreprise->setStatut(0);
+        $historicalAlertEntreprise->setStatus(0);
         $em->getConnection()->beginTransaction();
         try{
             $em->persist($historicalAlertEntreprise);
@@ -28,7 +28,7 @@ class HistoricalAlertEntrepriseRepository extends \Doctrine\ORM\EntityRepository
 
     public function saveHistoricalAlertEntreprise(\AppBundle\Entity\HistoricalAlertEntreprise $historicalAlertEntreprise) {
         $em= $this->_em;
-        $historicalAlertEntreprise->setStatut(1);
+        $historicalAlertEntreprise->setStatus(1);
         $em->getConnection()->beginTransaction();
         try{
             $em->persist($historicalAlertEntreprise);

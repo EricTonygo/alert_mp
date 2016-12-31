@@ -12,7 +12,7 @@ class EntrepriseRepository extends \Doctrine\ORM\EntityRepository
 {
     public function deleteEntreprise(\AppBundle\Entity\Entreprise $entreprise) {
         $em= $this->_em;
-        $entreprise->setStatut(0);
+        $entreprise->setStatus(0);
         $em->getConnection()->beginTransaction();
         try{
             $em->persist($entreprise);
@@ -28,7 +28,7 @@ class EntrepriseRepository extends \Doctrine\ORM\EntityRepository
 
     public function saveEntreprise(\AppBundle\Entity\Entreprise $entreprise) {
         $em= $this->_em;
-        $entreprise->setStatut(1);
+        $entreprise->setStatus(1);
         $em->getConnection()->beginTransaction();
         try{
             $em->persist($entreprise);

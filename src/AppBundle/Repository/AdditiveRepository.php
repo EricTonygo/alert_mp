@@ -14,7 +14,7 @@ class AdditiveRepository extends EntityRepository
 {
     public function deleteAdditive(\AppBundle\Entity\Additive $additive) {
         $em= $this->_em;
-        $additive->setStatut(0);
+        $additive->setStatus(0);
         $em->getConnection()->beginTransaction();
         try{
             $em->persist($additive);
@@ -30,7 +30,7 @@ class AdditiveRepository extends EntityRepository
 
     public function saveAdditive(\AppBundle\Entity\Additive $additive) {
         $em= $this->_em;
-        $additive->setStatut(1);
+        $additive->setStatus(1);
         $em->getConnection()->beginTransaction();
         try{
             $em->persist($additive);
@@ -59,16 +59,16 @@ class AdditiveRepository extends EntityRepository
     public function getAll() 
     {
         $qb = $this->createQueryBuilder('a');
-        $qb->where('a.statut = :statut')
-           ->setParameter('statut', 1);
+        $qb->where('a.status = :status')
+           ->setParameter('status', 1);
         return $qb->getQuery()->getResult();
     }
     
     public function getAdditiveQueryBuilder() {
          return $this
           ->createQueryBuilder('a')
-          ->where('a.statut = :statut')
-          ->setParameter('statut', 1);
+          ->where('a.status = :status')
+          ->setParameter('status', 1);
 
     }
 }
