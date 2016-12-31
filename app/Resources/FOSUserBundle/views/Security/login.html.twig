@@ -1,0 +1,29 @@
+{% extends "UserBundle::layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block title %}Connexion{% endblock %}
+
+{% block login_content %}                
+    <div class="ui centered card">
+        <div class="first content text center aligned">
+            <h2 class="header">Se connecter pour avoir accès</h2>
+        </div>
+        <div class="content">
+            {% if error %}
+                <div class='center uppercase text-red'>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+            <form id="login_form" class="ui form" action="{{ path("fos_user_security_check") }}" method="post">
+                <div class="field">
+                    <label>Matricule ou email</label>
+                    <input type="text" name="username_email" placeholder="Login">
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="Password">
+                </div>
+
+                <button class="ui fluid primary button" type="submit">Connexion</button>
+            </form>
+        </div>
+    </div>                       
+
+{% endblock %}
