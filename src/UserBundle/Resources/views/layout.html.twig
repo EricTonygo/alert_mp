@@ -1,0 +1,15 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    {% include('UserBundle::header.html.twig') %}
+    <div class="ui bottom attached segment pushable">
+        <div class="pusher">
+            <div class="ui login_contenair basic segment container">    
+                {% block login_content %}
+                {% endblock login_content %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
