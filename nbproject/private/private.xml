@@ -7,9 +7,10 @@
             <file>file:/C:/xampp/htdocs/alert_mp/src/AppBundle/Entity/Entreprise.php</file>
             <file>file:/C:/xampp/htdocs/alert_mp/src/AppBundle/Entity/Notification.php</file>
             <file>file:/C:/xampp/htdocs/alert_mp/src/AppBundle/Entity/Subcription.php</file>
-            <file>file:/C:/xampp/htdocs/alert_mp/.gitignore</file>
+            <file>file:/C:/xampp/htdocs/alert_mp/src/AppBundle/Resources/alert_mp_ui/index.html</file>
             <file>file:/C:/xampp/htdocs/alert_mp/src/AppBundle/Entity/Subcriber.php</file>
             <file>file:/C:/xampp/htdocs/alert_mp/nbproject/project.xml</file>
+            <file>file:/C:/xampp/htdocs/alert_mp/src/AppBundle/Entity/AlertProcedure.php</file>
         </group>
     </open-files>
 </project-private>
