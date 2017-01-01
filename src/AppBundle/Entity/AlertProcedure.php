@@ -47,6 +47,13 @@ class AlertProcedure
      * @ORM\Column(name="deadline", type="datetime")
      */
     private $deadline;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="opening_date", type="datetime")
+     */
+    private $openingDate;
 
     /**
      * @var string
@@ -54,6 +61,13 @@ class AlertProcedure
      * @ORM\Column(name="object", type="text")
      */
     private $object;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="owner", type="string", length=255)
+     */
+    private $owner;
 
     /**
      * @var string
@@ -63,14 +77,14 @@ class AlertProcedure
     private $abstract;
 
     /**
-     * @var int
+     * @var integer
      *
      * @ORM\Column(name="status", type="integer")
      */
     private $status;
 
     /**
-     * @var int
+     * @var integer
      *
      * @ORM\Column(name="state", type="integer")
      */
@@ -82,6 +96,20 @@ class AlertProcedure
      * @ORM\Column(name="sending_date", type="datetime")
      */
     private $sendingDate;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="create_date", type="datetime")
+     */
+    private $createDate;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="last_update_date", type="datetime")
+     */
+    private $lastUpdateDate;
     
     /**
      * @var \Domain
@@ -227,6 +255,30 @@ class AlertProcedure
     {
         return $this->object;
     }
+    
+    /**
+     * Set owner
+     *
+     * @param string $owner
+     *
+     * @return AlertProcedure
+     */
+    public function setOwner($owner)
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Get owner
+     *
+     * @return string
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
 
     /**
      * Set abstract
@@ -346,6 +398,79 @@ class AlertProcedure
     public function getDomain()
     {
         return $this->domain;
+    }
+    
+    /**
+     * Set createDate
+     *
+     * @param \DateTime $createDate
+     *
+     * @return AlertProcedure
+     */
+    public function setCreateDate($createDate)
+    {
+        $this->createDate = $createDate;
+
+        return $this;
+    }
+
+    /**
+     * Get createDate
+     *
+     * @return \DateTime
+     */
+    public function getCreateDate()
+    {
+        return $this->createDate;
+    }
+    
+    /**
+     * Set lastUpdateDate
+     *
+     * @param \DateTime $lastUpdateDate
+     *
+     * @return AlertProcedure
+     */
+    public function setLastUpdateDate($lastUpdateDate)
+    {
+        $this->lastUpdateDate = $lastUpdateDate;
+
+        return $this;
+    }
+
+    /**
+     * Get lastUpdateDate
+     *
+     * @return \DateTime
+     */
+    public function getLastUpdateDate()
+    {
+        return $this->lastUpdateDate;
+    }
+    
+    
+    /**
+     * Set openingDate
+     *
+     * @param \DateTime $openingDate
+     *
+     * @return AlertProcedure
+     */
+    public function setOpeningDate($openingDate)
+    {
+        $this->openingDate = $openingDate;
+
+        return $this;
+    }
+
+    /**
+     * Get openingDate
+     *
+     * @return \DateTime
+     */
+    public function getOpeningDate()
+    {
+        return $this->openingDate;
     }
 }
 

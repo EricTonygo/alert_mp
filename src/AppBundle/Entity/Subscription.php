@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Subcription
+ * Subscription
  *
- * @ORM\Table(name="subcription")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\SubcriptionRepository")
+ * @ORM\Table(name="subscription")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SubscriptionRepository")
  */
-class Subcription
+class Subscription
 {
     /**
      * @var integer
@@ -48,6 +48,20 @@ class Subcription
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Subscriber", mappedBy="subscriber", cascade={"remove", "persist"})
      */
     private $subscribers;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="create_date", type="datetime")
+     */
+    private $createDate;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="last_update_date", type="datetime")
+     */
+    private $lastUpdateDate;
     
     /** 
      * Constructor
@@ -179,6 +193,54 @@ class Subcription
     public function removeSubscriber(AppBundle\Entity\Subscriber $subscriber) {
         $this->subscribers->removeElement($subscriber);
         return $this;
+    }
+    
+    /**
+     * Set createDate
+     *
+     * @param \DateTime $createDate
+     *
+     * @return Subscription
+     */
+    public function setCreateDate($createDate)
+    {
+        $this->createDate = $createDate;
+
+        return $this;
+    }
+    
+    /**
+     * Get createDate
+     *
+     * @return \DateTime
+     */
+    public function getCreateDate()
+    {
+        return $this->createDate;
+    }
+    
+    /**
+     * Set lastUpdateDate
+     *
+     * @param \DateTime $lastUpdateDate
+     *
+     * @return Subscription
+     */
+    public function setLastUpdateDate($lastUpdateDate)
+    {
+        $this->lastUpdateDate = $lastUpdateDate;
+
+        return $this;
+    }
+
+    /**
+     * Get lastUpdateDate
+     *
+     * @return \DateTime
+     */
+    public function getLastUpdateDate()
+    {
+        return $this->lastUpdateDate;
     }
 }
 

@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Result
+ * ProcedureResult
  *
  * @ORM\Table(name="procedure_result")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProcedureResultRepository")

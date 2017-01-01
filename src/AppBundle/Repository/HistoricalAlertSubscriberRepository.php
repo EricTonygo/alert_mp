@@ -10,4 +10,63 @@ namespace AppBundle\Repository;
  */
 class HistoricalAlertSubscriberRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function deleteHistoricalAlertSubscriber(\AppBundle\Entity\HistoricalAlertSubscriber $historicalAlertSubscriber) {
+        $em= $this->_em;
+        $historicalAlertSubscriber->setStatus(0);
+        $em->getConnection()->beginTransaction();
+        try{
+            $em->persist($historicalAlertSubscriber);
+            $em->flush();
+            $em->getConnection()->commit();
+        } catch (Exception $ex) {
+            $em->getConnection()->rollback();
+            $em->close();
+            throw $ex;
+        }
+    }
+
+
+    public function saveHistoricalAlertSubscriber(\AppBundle\Entity\HistoricalAlertSubscriber $historicalAlertSubscriber) {
+        $em= $this->_em;
+        $historicalAlertSubscriber->setStatus(1);
+        $em->getConnection()->beginTransaction();
+        try{
+            $em->persist($historicalAlertSubscriber);
+            $em->flush();
+            $em->getConnection()->commit();
+        } catch (Exception $ex) {
+            $em->getConnection()->rollback();
+            $em->close();
+            throw $ex;
+        }
+    }
+
+    public function updateHistoricalAlertSubscriber(\AppBundle\Entity\HistoricalAlertSubscriber $historicalAlertSubscriber) {
+        $em= $this->_em;
+        $em->getConnection()->beginTransaction();
+        try{
+            $em->persist($historicalAlertSubscriber);
+            $em->flush();
+            $em->getConnection()->commit();
+        } catch (Exception $ex) {
+            $em->getConnection()->rollback();
+            $em->close();
+            throw $ex;
+        }
+    }
+    public function getAll() 
+    {
+        $qb = $this->createQueryBuilder('c');
+        $qb->where('c.status = :status')
+           ->setParameter('status', 1);
+        return $qb->getQuery()->getResult();
+    }
+    
+    public function getHistoricalAlertSubscriberQueryBuilder() {
+         return $this
+          ->createQueryBuilder('c')
+          ->where('c.status = :status')
+          ->setParameter('status', 1);
+
+    }
 }

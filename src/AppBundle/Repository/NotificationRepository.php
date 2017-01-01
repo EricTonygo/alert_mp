@@ -10,4 +10,63 @@ namespace AppBundle\Repository;
  */
 class NotificationRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function deleteNotification(\AppBundle\Entity\Notification $notification) {
+        $em= $this->_em;
+        $notification->setStatus(0);
+        $em->getConnection()->beginTransaction();
+        try{
+            $em->persist($notification);
+            $em->flush();
+            $em->getConnection()->commit();
+        } catch (Exception $ex) {
+            $em->getConnection()->rollback();
+            $em->close();
+            throw $ex;
+        }
+    }
+
+
+    public function saveNotification(\AppBundle\Entity\Notification $notification) {
+        $em= $this->_em;
+        $notification->setStatus(1);
+        $em->getConnection()->beginTransaction();
+        try{
+            $em->persist($notification);
+            $em->flush();
+            $em->getConnection()->commit();
+        } catch (Exception $ex) {
+            $em->getConnection()->rollback();
+            $em->close();
+            throw $ex;
+        }
+    }
+
+    public function updateNotification(\AppBundle\Entity\Notification $notification) {
+        $em= $this->_em;
+        $em->getConnection()->beginTransaction();
+        try{
+            $em->persist($notification);
+            $em->flush();
+            $em->getConnection()->commit();
+        } catch (Exception $ex) {
+            $em->getConnection()->rollback();
+            $em->close();
+            throw $ex;
+        }
+    }
+    public function getAll() 
+    {
+        $qb = $this->createQueryBuilder('n');
+        $qb->where('n.status = :status')
+           ->setParameter('status', 1);
+        return $qb->getQuery()->getResult();
+    }
+    
+    public function getNotificationQueryBuilder() {
+         return $this
+          ->createQueryBuilder('n')
+          ->where('n.status = :status')
+          ->setParameter('status', 1);
+
+    }
 }

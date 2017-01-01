@@ -10,4 +10,63 @@ namespace AppBundle\Repository;
  */
 class SpecialFollowUpRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function deleteSpecialFollowUp(\AppBundle\Entity\SpecialFollowUp $specialFollowUp) {
+        $em= $this->_em;
+        $specialFollowUp->setStatus(0);
+        $em->getConnection()->beginTransaction();
+        try{
+            $em->persist($specialFollowUp);
+            $em->flush();
+            $em->getConnection()->commit();
+        } catch (Exception $ex) {
+            $em->getConnection()->rollback();
+            $em->close();
+            throw $ex;
+        }
+    }
+
+
+    public function saveSpecialFollowUp(\AppBundle\Entity\SpecialFollowUp $specialFollowUp) {
+        $em= $this->_em;
+        $specialFollowUp->setStatus(1);
+        $em->getConnection()->beginTransaction();
+        try{
+            $em->persist($specialFollowUp);
+            $em->flush();
+            $em->getConnection()->commit();
+        } catch (Exception $ex) {
+            $em->getConnection()->rollback();
+            $em->close();
+            throw $ex;
+        }
+    }
+
+    public function updateSpecialFollowUp(\AppBundle\Entity\SpecialFollowUp $specialFollowUp) {
+        $em= $this->_em;
+        $em->getConnection()->beginTransaction();
+        try{
+            $em->persist($specialFollowUp);
+            $em->flush();
+            $em->getConnection()->commit();
+        } catch (Exception $ex) {
+            $em->getConnection()->rollback();
+            $em->close();
+            throw $ex;
+        }
+    }
+    public function getAll() 
+    {
+        $qb = $this->createQueryBuilder('s');
+        $qb->where('s.status = :status')
+           ->setParameter('status', 1);
+        return $qb->getQuery()->getResult();
+    }
+    
+    public function getSpecialFollowUpQueryBuilder() {
+         return $this
+          ->createQueryBuilder('s')
+          ->where('s.status = :status')
+          ->setParameter('status', 1);
+
+    }
 }

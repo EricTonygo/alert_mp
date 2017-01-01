@@ -5,9 +5,9 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Subcriber
+ * Subscriber
  *
- * @ORM\Table(name="subcriber")
+ * @ORM\Table(name="subscriber")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SubscriberRepository")
  */
 class Subscriber
@@ -67,14 +67,14 @@ class Subscriber
     private $entreprise;
     
     /**
-     * @var \Subcription
+     * @var \Subscription
      *
-     * @ORM\ManyToOne(targetEntity="Subcription")
+     * @ORM\ManyToOne(targetEntity="Subscription")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="subcription", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="subscription", referencedColumnName="id")
      * })
      */
-    private $subcription;
+    private $subscription;
     
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -90,6 +90,20 @@ class Subscriber
      * 
      */
     private $specialFollowUps;
+    
+     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="create_date", type="datetime")
+     */
+    private $createDate;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="last_update_date", type="datetime")
+     */
+    private $lastUpdateDate;
 
     /** 
      * Constructor
@@ -262,7 +276,7 @@ class Subscriber
      */
     public function setSubscription($subscription)
     {
-        $this->subcription = $subscription;
+        $this->subscription = $subscription;
 
         return $this;
     }
@@ -274,7 +288,7 @@ class Subscriber
      */
     public function getSubscription()
     {
-        return $this->subcription;
+        return $this->subscription;
     }
     
     /**
@@ -363,5 +377,54 @@ class Subscriber
         $this->entreprises->removeElement($specialFollowUp);
         return $this;
     }
+    
+    /**
+     * Set createDate
+     *
+     * @param \DateTime $createDate
+     *
+     * @return Subscriber
+     */
+    public function setCreateDate($createDate)
+    {
+        $this->createDate = $createDate;
+
+        return $this;
+    }
+    
+    /**
+     * Get createDate
+     *
+     * @return \DateTime
+     */
+    public function getCreateDate()
+    {
+        return $this->createDate;
+    }
+    
+    /**
+     * Set lastUpdateDate
+     *
+     * @param \DateTime $lastUpdateDate
+     *
+     * @return Subscriber
+     */
+    public function setLastUpdateDate($lastUpdateDate)
+    {
+        $this->lastUpdateDate = $lastUpdateDate;
+
+        return $this;
+    }
+
+    /**
+     * Get lastUpdateDate
+     *
+     * @return \DateTime
+     */
+    public function getLastUpdateDate()
+    {
+        return $this->lastUpdateDate;
+    }
+
 }
 

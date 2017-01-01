@@ -10,4 +10,98 @@ namespace AppBundle\Repository;
  */
 class DomainRepository extends \Doctrine\ORM\EntityRepository
 {
+     public function deleteDomain(\AppBundle\Entity\Domain $domain) {
+        $em = $this->_em;
+        $domain->setStatus(0);
+        $entreprise = new \AppBundle\Entity\Entreprise();
+        $repositoryEntreprise = $em->getRepository("AppBundle:Entreprise");
+        $procedureResult = new \AppBundle\Entity\ProcedureResult();
+        $repositoryProcedureResult = $em->getRepository("AppBundle:ProcedureResult");
+        $additive = new \AppBundle\Entity\Additive();
+        $repositoryAdditive = $em->getRepository("AppBundle:Additive");
+        $expressionInterest = new \AppBundle\Entity\ExpressionInterest();
+        $repositoryExpressionInterest = $em->getRepository("AppBundle:ExpressionInterest");
+        $callOffer = new \AppBundle\Entity\CallOffer();
+        $repositoryCallOffer = $em->getRepository("AppBundle:CallOffer");
+        $em->getConnection()->beginTransaction();
+        try {
+            $entreprises = $domain->getEntreprises();
+            $additives = $repositoryAdditive->findBy(array('domain' => $domain, "status" =>1));
+            $procedureResults = $repositoryProcedureResult->findBy(array('domain' => $domain, "status" =>1));
+            $expressionInterests = $repositoryExpressionInterest->findBy(array('domain' => $domain, "status" =>1));
+            $callOffers = $repositoryCallOffer->findBy(array('domain' => $domain, "status" =>1));
+            foreach ($entreprise as $entreprises) {
+                $entreprise->setDomain(null);
+                $repositoryEntreprise->updateEntreprise($entreprise);
+            }
+            foreach ($callOffer as $callOffers) {
+                $callOffer->setDomain(null);
+                $repositoryCallOffer->updateCallOffer($callOffer);
+            }
+            foreach ($additive as $additives) {
+                $additive->setDomain(null);
+                $repositoryAdditive->updateAdditive($additive);
+            }
+            foreach ($procedureResult as $procedureResults) {
+                $procedureResult->setDomain(null);
+                $repositoryProcedureResult->updateProcedure($procedureResult);
+            }
+            foreach ($expressionInterest as $expressionInterests) {
+                $expressionInterest->setDomain(null);
+                $repositoryExpressionInterest->updateExpressionInterest($expressionInterest);
+            }
+            $em->persist($domain);
+            $em->flush();
+            $em->getConnection()->commit();
+        } catch (Exception $ex) {
+            $em->getConnection()->rollback();
+            $em->close();
+            throw $ex;
+        }
+    }
+
+    public function saveDomain(\AppBundle\Entity\Domain $domain) {
+        $em = $this->_em;
+        $domain->setStatus(1);
+        $em->getConnection()->beginTransaction();
+        try {
+            $em->persist($domain);
+            $em->flush();
+            $em->getConnection()->commit();
+        } catch (Exception $ex) {
+            $em->getConnection()->rollback();
+            $em->close();
+            throw $ex;
+        }
+    }
+
+    public function updateDomain(\AppBundle\Entity\Domain $domain) {
+        $em = $this->_em;
+        $em->getConnection()->beginTransaction();
+        try {
+            $em->persist($domain);
+            $em->flush();
+            $em->getConnection()->commit();
+        } catch (Exception $ex) {
+            $em->getConnection()->rollback();
+            $em->close();
+            throw $ex;
+        }
+    }
+    
+    public function getAll() 
+    {
+        $qb = $this->createQueryBuilder('d');
+        $qb->where('d.status = :status')
+           ->setParameter('status', 1);
+        return $qb->getQuery()->getResult();
+    }
+    
+    public function getCallOfferQueryBuilder() {
+         return $this
+          ->createQueryBuilder('d')
+          ->where('d.status = :status')
+          ->setParameter('status', 1);
+
+    }
 }
